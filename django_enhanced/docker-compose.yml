@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: edyndev-db1
+    image: postgres:12-alpine
+    ports:
+      - "9991:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=edyndev
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - ./backups:/home/server/backups
+    networks:
+      - edyndev-default
+  
+  app:
+    container_name: edyndev-app
+    build:
+      context: .
+    volumes:
+      - .:/home/server
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "8001:8001"
+    depends_on:
+      - db
+    networks:
+      - edyndev-default
+
+volumes:
+  postgres_data:
+
+networks:
+  edyndev-default:
+    external:
+      name: edyndev-proxy

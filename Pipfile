@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+markdown = "*"
+django-filter = "*"
+django-cprofile-middleware = "*"
+snakeviz = "*"
+django-silk = "*"
+psycopg2-binary = "*"
+httpie = "*"
+django-debug-toolbar = "*"
+python-decouple = "*"
+django-redis = "*"
+django-environ = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"

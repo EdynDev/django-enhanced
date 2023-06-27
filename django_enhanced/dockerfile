@@ -1,0 +1,14 @@
+FROM python:3.9.5-slim-buster
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+WORKDIR /home/server
+
+COPY . .
+
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+CMD ["bash", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8001"]
+
+EXPOSE 8001
