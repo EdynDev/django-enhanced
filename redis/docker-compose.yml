@@ -1,0 +1,16 @@
+version: "3.9"
+   
+services:
+  python-redis:
+    build: .
+    container_name: edyndev-pyredis
+    command: sleep 3600  # Ejemplo: usar "sleep" como comando en lugar de CMD
+    volumes:
+      - .:/usr/src/app
+    networks:
+      - edyndev-default
+
+networks:
+  edyndev-default:
+    external:
+      name: edyndev-proxy

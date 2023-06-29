@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" --dbname "template1" <<-EOSQL
+	CREATE DATABASE "$POSTGRES_DB1";
+	CREATE DATABASE "$POSTGRES_DB2";
+	CREATE DATABASE "$POSTGRES_DB3";
+EOSQL

@@ -6,7 +6,27 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_enhanced.settings.base')
+    argv = sys.argv.copy()
+    if 'cprofile' in sys.argv:
+        print("1111111111")
+        os.environ['DJANGO_SETTINGS_MODULE'] = "django_enhanced.settings.cprofile"
+        argv.remove('cprofile')
+    elif 'silk' in sys.argv:
+        print("222222222")
+        os.environ['DJANGO_SETTINGS_MODULE'] = "django_enhanced.settings.silk"
+        argv.remove('silk')
+    elif 'toolbar' in sys.argv:
+        print("333333333")
+        os.environ['DJANGO_SETTINGS_MODULE'] = "django_enhanced.settings.debug_toolbar"
+        argv.remove('toolbar')
+    elif 'redis' in sys.argv:
+        print("4444444444")
+        os.environ['DJANGO_SETTINGS_MODULE'] = "django_enhanced.settings.redis"
+        argv.remove('redis')
+    else:
+        print("5555555555")
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_enhanced.settings.base')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
@@ -15,7 +35,8 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    execute_from_command_line(sys.argv)
+    # execute_from_command_line(sys.argv)
+    execute_from_command_line(argv)
 
 
 if __name__ == '__main__':

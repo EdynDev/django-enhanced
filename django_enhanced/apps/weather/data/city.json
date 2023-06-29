@@ -1,0 +1,182 @@
+[
+    {
+        "model": "weather.city",
+        "pk": 1,
+        "fields": {
+            "name": "Lima",
+            "code": "15001",
+            "population": "9751717"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 2,
+        "fields": {
+            "name": "Callao",
+            "code": "15002",
+            "population": "99494"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 3,
+        "fields": {
+            "name": "La Victoria",
+            "code": "15003",
+            "population": "203795"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 4,
+        "fields": {
+            "name": "San Isidro",
+            "code": "15004",
+            "population": "68727"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 5,
+        "fields": {
+            "name": "San Borja",
+            "code": "15005",
+            "population": "109213"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 6,
+        "fields": {
+            "name": "Miraflores",
+            "code": "15006",
+            "population": "97837"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 7,
+        "fields": {
+            "name": "Surco",
+            "code": "15007",
+            "population": "374269"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 8,
+        "fields": {
+            "name": "San Miguel",
+            "code": "15008",
+            "population": "158064"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 9,
+        "fields": {
+            "name": "Breña",
+            "code": "15009",
+            "population": "9662"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 10,
+        "fields": {
+            "name": "Lince",
+            "code": "15010",
+            "population": "55107"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 11,
+        "fields": {
+            "name": "Pueblo Libre",
+            "code": "15011",
+            "population": "91361"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 12,
+        "fields": {
+            "name": "Magdalena",
+            "code": "15012",
+            "population": "73830"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 13,
+        "fields": {
+            "name": "San Juan de Lurigancho",
+            "code": "15013",
+            "population": "1101051"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 14,
+        "fields": {
+            "name": "Barranco",
+            "code": "15014",
+            "population": "47347"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 15,
+        "fields": {
+            "name": "Surquillo",
+            "code": "15015",
+            "population": "98258"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 16,
+        "fields": {
+            "name": "Jesús María",
+            "code": "15016",
+            "population": "74323"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 17,
+        "fields": {
+            "name": "San Juan de Miraflores",
+            "code": "15017",
+            "population": "364801"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 18,
+        "fields": {
+            "name": "Villa El Salvador",
+            "code": "15018",
+            "population": "551919"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 19,
+        "fields": {
+            "name": "La Molina",
+            "code": "15019",
+            "population": "144648"
+        }
+    },
+    {
+        "model": "weather.city",
+        "pk": 20,
+        "fields": {
+            "name": "Chorrillos",
+            "code": "15020",
+            "population": "35539"
+        }
+    }
+]

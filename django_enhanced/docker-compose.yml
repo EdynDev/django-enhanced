@@ -4,29 +4,83 @@ services:
   db:
     container_name: edyndev-db1
     image: postgres:12-alpine
+    restart: always
     ports:
       - "9991:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=edyndev
+      - POSTGRES_DB1=edyndev-db1
+      - POSTGRES_DB2=edyndev-db2
+      - POSTGRES_DB3=edyndev-db3
     volumes:
       - postgres_data:/var/lib/postgresql/data/
       - ./backups:/home/server/backups
+      - ./init-database.sh:/docker-entrypoint-initdb.d/init-database.sh # Monta el archivo init-db en el contenedor
     networks:
       - edyndev-default
-  
-  app:
-    container_name: edyndev-app
+
+  app-silk:
+    container_name: edyndev-app-silk
     build:
       context: .
+      dockerfile: ./Dockerfile.app
+    command: python manage.py silk runserver 0.0.0.0:8002
+    volumes:
+      - .:/home/server
+    environment:
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_DB=edyndev-db2
+      - SILK=True
+    env_file:
+      - settings.ini
+    ports:
+      - "8002:8002"
+    depends_on:
+      - db
+    networks:
+      - edyndev-default
+
+  app-profile:
+    container_name: edyndev-app-profile
+    build:
+      context: .
+      dockerfile: ./Dockerfile.app
+    command: python manage.py cprofile runserver 0.0.0.0:8003
+    volumes:
+      - .:/home/server
+    environment:
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_DB=edyndev-db3
+      - CPROFILE=True
+    env_file:
+      - settings.ini
+    ports:
+      - "8003:8003"
+    depends_on:
+      - db
+    networks:
+      - edyndev-default
+
+  app-toolbar:
+    container_name: edyndev-app-toolbar
+    build:
+      context: .
+      dockerfile: ./Dockerfile.app
+    command: python manage.py toolbar runserver 0.0.0.0:8004
     volumes:
       - .:/home/server
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+      - DATABASE_DB=edyndev-db1
+      - DEBUG_TOOLBAR=True
+    env_file:
+      - settings.ini
     ports:
-      - "8001:8001"
+      - "8004:8004"
     depends_on:
       - db
     networks:
@@ -34,6 +88,7 @@ services:
 
 volumes:
   postgres_data:
+  redis_data:
 
 networks:
   edyndev-default:

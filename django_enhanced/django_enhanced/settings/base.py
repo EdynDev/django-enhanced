@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': config('DATABASE_DB', default='postgres'),
         'USER': env('DATABASE_USER', default='postgres'),
         'PASSWORD': env('DATABASE_PASSWORD', default='postgres'),
-        'HOST': env('DATABASE_HOST', default='edyndev-db1'),
+        'HOST': env('DATABASE_HOST', default='db'),
         'PORT': '5432',
     }
 }

@@ -1,0 +1,66 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: edyndev-db1
+    image: postgres:12-alpine
+    restart: always
+    ports:
+      - "9991:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB1=edyndev-db1
+      - POSTGRES_DB2=edyndev-db2
+      - POSTGRES_DB3=edyndev-db3
+      - POSTGRES_DB4=edyndev-db4
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+      - ./backups:/home/server/backups
+      - ./init-database.sh:/docker-entrypoint-initdb.d/init-database.sh # Monta el archivo init-db en el contenedor
+    networks:
+      - edyndev-default
+
+  app-redis:
+    container_name: edyndev-app-redis
+    build:
+      context: .
+      dockerfile: ./Dockerfile.app
+    command: python manage.py redis runserver 0.0.0.0:8005
+    volumes:
+      - .:/home/server
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - DATABASE_DB=edyndev-db4
+      - REDIS=True
+    env_file:
+      - settings.ini
+    ports:
+      - "8005:8005"
+    depends_on:
+      - db
+    networks:
+      - edyndev-default
+
+  redis-cache:
+    container_name: edyndev-cache
+    image: redis/redis-stack:latest
+    ports:
+      - 6379:6379
+      - 8001:8001
+    volumes:
+      - redis_data:/data
+    depends_on:
+      - app-redis
+    networks:
+      - edyndev-default
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  edyndev-default:
+    external:
+      name: edyndev-proxy
